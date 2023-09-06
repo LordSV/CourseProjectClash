@@ -1,8 +1,11 @@
 using UnityEngine;
 using static UnitState;
 
+[RequireComponent(typeof(UnitParameters))]
 public class Unit : MonoBehaviour
 {
+    [field: SerializeField] public UnitParameters parameters;
+    [field: SerializeField] public bool isEnemy { get; private set; } = false;
     [SerializeField] private UnitState _defaultStateSO;
     [SerializeField] private UnitState _chaseStateSO;
     [SerializeField] private UnitState _attackStateSO;
