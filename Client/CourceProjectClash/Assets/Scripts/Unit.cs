@@ -2,9 +2,11 @@ using UnityEditor;
 using UnityEngine;
 using static UnitState;
 
-[RequireComponent(typeof(UnitParameters))]
-public class Unit : MonoBehaviour
+[RequireComponent(typeof(UnitParameters), typeof(Health))]
+public class Unit : MonoBehaviour, IHealth
 {
+    [field: SerializeField] public Health health { get; private set; }
+
     [field: SerializeField] public UnitParameters parameters;
     [field: SerializeField] public bool isEnemy { get; private set; } = false;
     [SerializeField] private UnitState _defaultStateSO;
