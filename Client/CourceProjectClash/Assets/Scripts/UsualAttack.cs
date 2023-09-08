@@ -54,7 +54,7 @@ public class UsualAttack : UnitState
         _time -= _delay;
 
 
-        if (_target == false)
+        if (_target == false || _target.gameObject.activeInHierarchy == false)
         {
             _unit.SetState(UnitStateType.Default);
             return;

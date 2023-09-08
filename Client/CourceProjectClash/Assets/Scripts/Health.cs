@@ -15,7 +15,11 @@ public class Health : MonoBehaviour
     public void ApplyDamage(float value)
     {
         _current -= value;
-        if(_current < 0) _current = 0;
+        if (_current <= 0) 
+        {
+            _current = 0;
+            gameObject.SetActive(false);
+        } 
 
         Debug.Log($"Объект {name}: было - {_current + value}, стало {_current}");
     }

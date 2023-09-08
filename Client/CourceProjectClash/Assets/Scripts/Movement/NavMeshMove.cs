@@ -31,8 +31,15 @@ public class NavMeshMove : UnitState
 
     public override void Run()
     {
-        if (TryAttackTower()) return;
-        if (TryAttackUnit()) return;
+        if(_nearestTower == null || _nearestTower.gameObject.activeInHierarchy == false)
+        {
+            Init();
+        }
+        else
+        {
+            if (TryAttackTower()) return;
+            if (TryAttackUnit()) return;
+        }
     }
 
     private bool TryAttackTower()

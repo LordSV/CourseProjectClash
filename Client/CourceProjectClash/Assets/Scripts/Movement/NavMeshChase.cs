@@ -25,7 +25,7 @@ public class NavMeshChase : UnitState
     }
     public override void Run()
     {
-        if(_targetUnit == null)
+        if(_targetUnit == null || _targetUnit.gameObject.activeInHierarchy == false)
         {
             _unit.SetState(UnitStateType.Default);
             return;

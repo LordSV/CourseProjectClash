@@ -43,6 +43,7 @@ public class MapInfo : MonoBehaviour
     private T GetNearest<T>(in Vector3 currentPosition, List<T> objects, out float distance) where T : MonoBehaviour
     {
         distance = float.MaxValue;
+        objects.RemoveAll(x => x.gameObject.activeInHierarchy == false);
         if (objects.Count <= 0) return null;
 
         distance = Vector3.Distance(currentPosition, objects[0].transform.position);
