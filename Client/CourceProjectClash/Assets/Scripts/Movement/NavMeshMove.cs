@@ -20,7 +20,6 @@ public class NavMeshMove : UnitState
         _agent.speed = _unit.parameters.speed;
         _agent.radius = _unit.parameters.modelRadius;
         _agent.stoppingDistance = _unit.parameters.startAttackDistance;
-
     }
     public override void Init()
     {
@@ -62,6 +61,6 @@ public class NavMeshMove : UnitState
 
     public override void Finish()
     {
-     _agent.isStopped = true;
+        _agent.SetDestination(_unit.transform.position);
     }
 }

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using static UnitState;
 
@@ -51,4 +52,12 @@ public class Unit : MonoBehaviour
         }
         _currentState.Init();
     }
+#if UNITY_EDITOR
+    [Space]
+    [SerializeField] private bool _debug = false;
+    private void OnDrawGizmos()
+    {
+        if (_chaseStateSO != null) _chaseStateSO.DebugDrowDistance(this);
+    }
+#endif
 }

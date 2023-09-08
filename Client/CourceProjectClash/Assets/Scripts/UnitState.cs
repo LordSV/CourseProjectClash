@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public abstract class UnitState : ScriptableObject
@@ -12,6 +13,10 @@ public abstract class UnitState : ScriptableObject
     public abstract void Run();
     public abstract void Finish();
 
+#if UNITY_EDITOR
+    public virtual void DebugDrowDistance(Unit unit) { }
+
+#endif
     public enum UnitStateType
     {
         None = 0,
