@@ -18,6 +18,7 @@ public class MapInfo : MonoBehaviour
     private void OnDestroy()
     {
         if(Instance == this) Instance = null;
+
     }
     #endregion
     [SerializeField] private List<Tower> _enemyTowers = new List<Tower>();
@@ -26,6 +27,13 @@ public class MapInfo : MonoBehaviour
     [SerializeField] private List<Unit> _enemyUnits = new List<Unit>();
     [SerializeField] private List<Unit> _playerUnits = new List<Unit>();
 
+    private void Start()
+    {
+        SubscribeDestroy(_enemyUnits);
+        SubscribeDestroy(_playerUnits);
+        SubscribeDestroy(_enemyTowers);
+        SubscribeDestroy(_playerTowers);
+    }
 
     public bool TryGetNearestUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance)
     {
@@ -57,5 +65,37 @@ public class MapInfo : MonoBehaviour
             distance = tempDistance;
         }
         return nearest;
-    }    
+    }  
+
+    private void SubscribeDestroy<T>(List<T> objects) where T : IDestroyed
+    {
+        for(int i = 0; i < objects.Count; i++)
+        {
+            T obj = objects[i];       
+            void RemoveAndUnsubscribe()
+            {
+                RemoveObjectFromList(objects, obj);
+                obj.Destroyed -= RemoveAndUnsubscribe;
+            }
+            objects[i].Destroyed += RemoveAndUnsubscribe;
+        }
+    }
+
+
+    private void AddObjectToList<T>(List<T> list, T obj) where T : IDestroyed
+    {            
+        list.Add(obj);
+        void RemoveAndUnsubscribe()
+        {
+            RemoveObjectFromList(list, obj);
+            obj.Destroyed -= RemoveAndUnsubscribe;
+        }
+
+        obj.Destroyed += RemoveAndUnsubscribe;
+
+    }
+    private void RemoveObjectFromList<T>(List<T> list, T obj)
+    {
+        if(list.Contains(obj)) list.Remove(obj);
+    }
 }

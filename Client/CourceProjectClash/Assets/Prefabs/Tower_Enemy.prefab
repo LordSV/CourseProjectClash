@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7961173906970410064
 Transform:
@@ -110,12 +110,13 @@ GameObject:
   - component: {fileID: 7961173908228806629}
   - component: {fileID: 7961173908228806628}
   - component: {fileID: 7961173908228806631}
+  - component: {fileID: 4691903714732883620}
   m_Layer: 0
-  m_Name: Tower_L_2
+  m_Name: Tower_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7961173908228806651
 Transform:
@@ -189,6 +190,22 @@ MonoBehaviour:
   _tower: {fileID: 7961173908228806650}
   _healthbar: {fileID: 9187632385220546251}
   _fillHealthImage: {fileID: 3135890413236113780}
+--- !u!208 &4691903714732883620
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961173908228806648}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.055, y: 2.195, z: 1.245}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &7961173907461290811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,6 +217,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WorldCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 907797512321140501, guid: 711d685dca123bb46a2e073b4ff0e541,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1295562818730636784, guid: 711d685dca123bb46a2e073b4ff0e541,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360701273214232004, guid: 711d685dca123bb46a2e073b4ff0e541,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7293269575918996722, guid: 711d685dca123bb46a2e073b4ff0e541,
         type: 3}
