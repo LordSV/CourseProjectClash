@@ -1,13 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[CreateAssetMenu(fileName = "_NavMeshMove", menuName = "UnitState/NavMeshMove")]
-public class NavMeshMove : UnitState
+public abstract class UnitStateNavMeshMove : UnitState
 {
     private NavMeshAgent _agent;
     private Vector3 _targetPosition;
-    private bool _targetIsEnemy;
-    private Tower _nearestTower;
+    protected bool _targetIsEnemy;
+    protected Tower _nearestTower;
 
     public override void Constructor(Unit unit)
     {
@@ -31,9 +32,13 @@ public class NavMeshMove : UnitState
 
     public override void Run()
     {
-        if (TryAttackTower()) return;
-        if (TryAttackUnit()) return;
+        if(TryFindTarget(out UnitStateType changeType))
+        {
+            _unit.SetState(changeType);
+        }
     }
+
+    protected abstract bool TryFindTarget(out UnitStateType changeType);
 
     private bool TryAttackTower()
     {
@@ -47,10 +52,10 @@ public class NavMeshMove : UnitState
     }
     private bool TryAttackUnit()
     {
-        bool hasEnemy = MapInfo.Instance.TryGetNearestUnit(_unit.transform.position, _targetIsEnemy, out Unit enemy, out float distance);
-        if(hasEnemy == false) return false;
+        bool hasEnemy = MapInfo.Instance.TryGetNearestAnyUnit(_unit.transform.position, _targetIsEnemy, out Unit enemy, out float distance);
+        if (hasEnemy == false) return false;
 
-        if(_unit.parameters.startChaseDistance >= distance + enemy.parameters.modelRadius)
+        if (_unit.parameters.startChaseDistance >= distance + enemy.parameters.modelRadius)
         {
             _unit.SetState(UnitStateType.Chase);
             return true;

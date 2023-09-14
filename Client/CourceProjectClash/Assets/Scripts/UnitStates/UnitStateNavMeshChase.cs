@@ -4,12 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-[CreateAssetMenu(fileName = "_NavMeshChase", menuName = "UnitState/NavMeshChase")]
-public class NavMeshChase : UnitState
+public abstract class UnitStateNavMeshChase : UnitState
 {
     private NavMeshAgent _agent;
-    private bool _targetIsEnemy;
-    private Unit _targetUnit;
+    protected bool _targetIsEnemy;
+    protected Unit _targetUnit;
+    protected float _startAttackDistance = 0;
     public override void Constructor(Unit unit)
     {
         base.Constructor(unit);
@@ -21,11 +21,15 @@ public class NavMeshChase : UnitState
     }
     public override void Init()
     {
-        MapInfo.Instance.TryGetNearestUnit(_unit.transform.position, _targetIsEnemy, out _targetUnit, out float distance);
+       FindTarget(out _targetUnit);
+       if (_targetUnit == null) _unit.SetState(UnitStateType.Default);
     }
+
+    public abstract void FindTarget(out Unit targetUnit);
+
     public override void Run()
     {
-        if(_targetUnit == null)
+        if (_targetUnit == null)
         {
             _unit.SetState(UnitStateType.Default);
             return;
@@ -33,7 +37,7 @@ public class NavMeshChase : UnitState
 
         float distanceToTarget = Vector3.Distance(_unit.transform.position, _targetUnit.transform.position);
         if (distanceToTarget > _unit.parameters.stopChaseDistance) _unit.SetState(UnitStateType.Default);
-        else if(distanceToTarget <= _unit.parameters.startAttackDistance + _targetUnit.parameters.modelRadius) _unit.SetState(UnitStateType.Attack);
+        else if (distanceToTarget <= _unit.parameters.startAttackDistance + _targetUnit.parameters.modelRadius) _unit.SetState(UnitStateType.Attack);
         else _agent.SetDestination(_targetUnit.transform.position);
     }
     public override void Finish()
