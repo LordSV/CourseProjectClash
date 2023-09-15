@@ -21,6 +21,16 @@ public class Health : MonoBehaviour
 
         UpdateHealth?.Invoke(_current);
     }
+
+    public void ApplyDelayDamage(float delay, float damage)
+    {
+        StartCoroutine(DelayDamage(delay, damage));
+    }
+    private IEnumerator DelayDamage(float delay, float damage)
+    {
+        yield return new WaitForSeconds(delay);
+        ApplyDamage(damage);
+    }
 }
 
 public interface IHealth

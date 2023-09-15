@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 536331826145130973}
   - component: {fileID: 536331826145130972}
   - component: {fileID: 1121443729768974645}
+  - component: {fileID: 8478759542756219247}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -172,6 +173,7 @@ MonoBehaviour:
   <health>k__BackingField: {fileID: 536331826145130972}
   parameters: {fileID: 536331826145130973}
   <isEnemy>k__BackingField: 0
+  _animation: {fileID: 8478759542756219247}
   _defaultStateSO: {fileID: 11400000, guid: 3deb26e07ca46764f89b46b0052d94a2, type: 2}
   _chaseStateSO: {fileID: 11400000, guid: c360b2eda01b75d4d9257c8aac35c90e, type: 2}
   _attackStateSO: {fileID: 11400000, guid: a06d03d4456ee71429310df2eebc046c, type: 2}
@@ -223,6 +225,19 @@ MonoBehaviour:
   _unit: {fileID: 536331826145130970}
   _healthbar: {fileID: 5023067917163375778}
   _fillHealthImage: {fileID: 1274634035718583069}
+--- !u!114 &8478759542756219247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536331826145130969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1acb4f5878360d459e14e7596576958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &5023067917163375778
 GameObject:
   m_ObjectHideFlags: 0
