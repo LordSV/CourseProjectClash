@@ -25,6 +25,7 @@ public class Authorization : MonoBehaviour
         if(string.IsNullOrEmpty(_login) || string.IsNullOrEmpty(_password))
         {
             ErrorMessage("Логин и/или пароль пустые");
+            return;
         }
         string uri = URLLibrary.MAIN + URLLibrary.AUTHORIZATION;
         Dictionary<string, string> data = new Dictionary<string, string>()
