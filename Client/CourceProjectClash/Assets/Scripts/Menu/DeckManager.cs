@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,12 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Card[] _cards;
     [SerializeField] private List<Card> _availableCards = new List<Card>();
     [SerializeField] private List<Card> _selectedCards = new List<Card>();
+    public IReadOnlyList<Card> AvailableCards { get { return _availableCards; } }
+    public IReadOnlyList<Card> SelectedCards { get { return _selectedCards; } }
+
+    public event Action<IReadOnlyList<Card>> UpdateAvailable;
+    public event Action<IReadOnlyList<Card>> UpdateSelected;
+
 
     public void Init(List<int> availableCardIndexes, int[] selectedCardIndexes)
     {
@@ -18,12 +25,14 @@ public class DeckManager : MonoBehaviour
         {
             _selectedCards.Add(_cards[selectedCardIndexes[i]]);
         }
+        UpdateAvailable?.Invoke(AvailableCards);
+        UpdateSelected?.Invoke(SelectedCards);
     }
 }
 
 [System.Serializable]
 public class Card
 {
-    public string name;
-    public Sprite sprite;
+    [field: SerializeField] public string name { get; private set; }
+    [field: SerializeField] public Sprite sprite { get; private set; }
 }
