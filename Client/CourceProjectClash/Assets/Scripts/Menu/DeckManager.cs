@@ -14,7 +14,13 @@ public class DeckManager : MonoBehaviour
     public event Action<IReadOnlyList<Card>> UpdateAvailable;
     public event Action<IReadOnlyList<Card>> UpdateSelected;
 
-
+    #region Editor
+    [SerializeField] private AvailableDeckUI _availableDeckUI;
+    private void OnValidate()
+    {
+        _availableDeckUI.SetAllCardsCount(_cards);
+    }
+    #endregion
     public void Init(List<int> availableCardIndexes, int[] selectedCardIndexes)
     {
         for(int i = 0; i < availableCardIndexes.Count; i++)
