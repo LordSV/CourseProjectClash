@@ -4,16 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class AvailableDeckUI : MonoBehaviour
-{
+{    
+    [SerializeField] private List<AvailableCardUI> _availableCardUI = new List<AvailableCardUI>();
     #region Editor
+#if UNITY_EDITOR
     [SerializeField] private Transform _availableCardParent;
     [SerializeField] private AvailableCardUI _availableCardUIPrefab;
-    [SerializeField] private List<AvailableCardUI> _availableCardUI = new List<AvailableCardUI>();
+
     public void SetAllCardsCount(Card[] cards)
     {
         for(int i = 0; i < _availableCardUI.Count; i++)
         {
-            Destroy(_availableCardUI[i].gameObject);
+            GameObject go = _availableCardUI[i].gameObject;
+            UnityEditor.EditorApplication.delayCall += () => DestroyImmediate(go);
         }
         _availableCardUI.Clear();
 
@@ -23,7 +26,9 @@ public class AvailableDeckUI : MonoBehaviour
             card.Init(cards[i]);
             _availableCardUI.Add(card);
         }
+        UnityEditor.EditorUtility.SetDirty(this);
     }
-    #endregion
+#endif
+#endregion
 
 }

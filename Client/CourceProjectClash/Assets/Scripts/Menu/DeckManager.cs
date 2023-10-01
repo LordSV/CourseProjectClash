@@ -16,11 +16,13 @@ public class DeckManager : MonoBehaviour
 
     #region Editor
     [SerializeField] private AvailableDeckUI _availableDeckUI;
+#if UNITY_EDITOR
     private void OnValidate()
     {
         _availableDeckUI.SetAllCardsCount(_cards);
     }
-    #endregion
+#endif
+#endregion
     public void Init(List<int> availableCardIndexes, int[] selectedCardIndexes)
     {
         for(int i = 0; i < availableCardIndexes.Count; i++)
