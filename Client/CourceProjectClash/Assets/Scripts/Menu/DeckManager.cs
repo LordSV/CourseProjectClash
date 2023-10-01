@@ -11,7 +11,7 @@ public class DeckManager : MonoBehaviour
     public IReadOnlyList<Card> AvailableCards { get { return _availableCards; } }
     public IReadOnlyList<Card> SelectedCards { get { return _selectedCards; } }
 
-    public event Action<IReadOnlyList<Card>> UpdateAvailable;
+    public event Action<IReadOnlyList<Card>, IReadOnlyList<Card>> UpdateAvailable;
     public event Action<IReadOnlyList<Card>> UpdateSelected;
 
     #region Editor
@@ -33,7 +33,7 @@ public class DeckManager : MonoBehaviour
         {
             _selectedCards.Add(_cards[selectedCardIndexes[i]]);
         }
-        UpdateAvailable?.Invoke(AvailableCards);
+        UpdateAvailable?.Invoke(AvailableCards, SelectedCards);
         UpdateSelected?.Invoke(SelectedCards);
     }
 }
@@ -42,5 +42,7 @@ public class DeckManager : MonoBehaviour
 public class Card
 {
     [field: SerializeField] public string name { get; private set; }
+    [field: SerializeField] public int id { get; private set; }
     [field: SerializeField] public Sprite sprite { get; private set; }
+
 }
