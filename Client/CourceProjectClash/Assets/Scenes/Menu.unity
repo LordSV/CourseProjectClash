@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e524c7a06ca07046afa6d04c5ace9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deckData:
-    availableCards: []
-    selectedIDs: []
+  _manager: {fileID: 1757838188}
+  _availableCards: 
+  _selectedCards: 0000000000000000
 --- !u!4 &27483048
 Transform:
   m_ObjectHideFlags: 0
@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 1757838187}
   - component: {fileID: 1757838188}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: DeckManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1218,10 +1218,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757838186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07d116a7326e4954db1bd9346c1b7853, type: 3}
+  m_Script: {fileID: 11500000, guid: 9886fa3d06052404ba18cc4bb6b515fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deckLoader: {fileID: 27483047}
+  _cards:
+  - name: Archer
+    sprite: {fileID: 21300000, guid: 59ddf7198f5ae814b9f2eba42530c7a8, type: 3}
+  - name: Golem
+    sprite: {fileID: 21300000, guid: 3a5e5e56eac06da4bb3b04e29ea515bd, type: 3}
+  - name: Warrior
+    sprite: {fileID: 21300000, guid: a080a4b3b7298f946871d35e1e77fdef, type: 3}
+  _availableCards: []
+  _selectedCards: []
 --- !u!1 &2144382593
 GameObject:
   m_ObjectHideFlags: 0
