@@ -1227,7 +1227,7 @@ MonoBehaviour:
   - name: Golem
     sprite: {fileID: 21300000, guid: 3a5e5e56eac06da4bb3b04e29ea515bd, type: 3}
   - name: Warrior
-    sprite: {fileID: 21300000, guid: a080a4b3b7298f946871d35e1e77fdef, type: 3}
+    sprite: {fileID: 21300000, guid: 38c22a6eed850af43aa9c5771c452745, type: 3}
   _availableCards: []
   _selectedCards: []
 --- !u!1 &2144382593
